@@ -2,9 +2,10 @@ import { View, Text, StyleSheet, TextInput, TouchableOpacity, ToastAndroid } fro
 import React, { useState, useEffect } from 'react'
 import { createClient } from '@supabase/supabase-js'
 import {auth} from '../utils/firebase'
+import { router, useRouter } from 'expo-router';
 
 export default function CadastrarCategoria() {
-
+    const router = useRouter()
     const [CategoriaNome, setCategoriaNome]=useState('');
     const [Descricao, setDescricao]=useState('');
     const [icon, setIcon]=useState('');
@@ -33,16 +34,10 @@ export default function CadastrarCategoria() {
         console.log(data);        
         if(data){
             ToastAndroid.show('Categoria Criada',ToastAndroid.SHORT)
-            limpar()
+            router.replace({pathname:'/ItensCategoria', params:{CategoriaId:data[0].id}})
         }
         
-    }
-
-    const limpar = () =>{
-      setCategoriaNome('')
-      setDescricao('')
-      setIcon('')
-    }
+    }   
 
     
 

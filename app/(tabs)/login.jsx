@@ -45,10 +45,11 @@ export default function TelaLogin(){
             console.log(user.email)
           })
           .catch(error => alert(error.message))
-          Alert.alert('Sucesso no Registro')
+          
         }catch(error){
           Alert.alert('Falha no Registro: ' + error.message)
         }finally{
+          Alert.alert('Sucesso no Registro')
           setLoading(false)
         }
     }

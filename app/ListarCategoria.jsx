@@ -13,12 +13,12 @@ export default function ListarCategoria({categorialista}) {
             {categorialista?.map((categoria,index)=>(
                 <View key={index} style={Styles.container}>
                     <View style={Styles.iconContainer}>
-                        <Text>{categoria.icon}</Text>
+                        <Text style={[Styles.iconText,{backgroundColor:"red"}]}>{categoria.icon}</Text>
                     </View>
                     <View style={Styles.subContainer}>
                         <View>
-                            <Text style={Styles.CategoriaText}>{categoria.nome}</Text>
-                            <Text style={Styles.Contador}>{categoria?.Categoria_itens?.length}</Text>
+                            <Text style={Styles.CategoriaText}>{categoria.Nome}</Text>
+                            <Text style={Styles.Contador}>Itens: {categoria?.Categoria_itens?.length}</Text>
                         </View>
                         <View>
                             <Text>Total</Text>
@@ -46,7 +46,9 @@ const Styles = StyleSheet.create({
     },
     iconText:{
         fontSize:35,
-        borderRadius:15
+        borderRadius:15,
+        padding:10,
+        borderRadius:10
     },
     CategoriaText:{
         fontWeight:'bold',
