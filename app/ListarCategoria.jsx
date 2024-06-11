@@ -1,8 +1,17 @@
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
+import { useRouter } from 'expo-router'
 
 export default function ListarCategoria({categorialista}) {
-    
+    const router = useRouter()
+    const Categoriaclick=(categoria)=>{
+        router.push({
+            pathname:'/ItensCategoria',
+            params:{
+                CategoriaId:categoria.id
+            }
+        })
+    }
     
   return (
         <View>
@@ -11,7 +20,7 @@ export default function ListarCategoria({categorialista}) {
         </View>
         <View>
             {categorialista?.map((categoria,index)=>(
-                <View key={index} style={Styles.container}>
+                <TouchableOpacity key={index} style={Styles.container} onPress={()=>Categoriaclick(categoria)}>
                     <View style={Styles.iconContainer}>
                         <Text style={[Styles.iconText,{backgroundColor:"red"}]}>{categoria.icon}</Text>
                     </View>
@@ -24,7 +33,7 @@ export default function ListarCategoria({categorialista}) {
                             <Text>Total</Text>
                         </View>
                     </View>
-                </View>
+                </TouchableOpacity>
             ))}     
                 
         </View>

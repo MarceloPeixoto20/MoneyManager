@@ -11,6 +11,11 @@ export default function Homelayout(){
         headerShown:true,
         headerTitle:'Cadastrar Categoria'
       }} />
+      <Stack.Screen name='CadastrarItens' options={{
+        presentation:'modal',
+        headerShown:true,
+        headerTitle:'Cadastrar Itens Categoria'
+      }} />
     </Stack>
   )
 }

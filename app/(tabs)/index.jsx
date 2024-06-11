@@ -34,21 +34,22 @@ export default function Index(){
 
     return(   
         <View>
-            <ScrollView refreshControl={<RefreshControl onRefresh={()=>ListarCategorias} refreshing={loading} />}>
-            <View style={{
-                backgroundColor:'#47FC5B',            
-                padding:20,
-                height:100,
-                alignItems:'center'
-            }}>     
-                <Header />
-            </View>        
-            
-            <Link href={'/CadastrarCategoria'} >
-                <FontAwesome6 name="add" size={24} color="black" />
-            </Link>
+            <ScrollView refreshControl={<RefreshControl onRefresh={()=>ListarCategorias()} refreshing={loading} />}>
+                <View style={{
+                    backgroundColor:'#47FC5B',            
+                    padding:20,
+                    height:100,
+                    alignItems:'center'
+                }}>     
+                    <Header />
+                </View>        
+
+                <Link href={'/CadastrarCategoria'} >
+                    <FontAwesome6 name="add" size={24} color="black" />
+                </Link>
+
+                <ListarCategoria categorialista={categorialista} />
             </ScrollView>
-            <ListarCategoria categorialista={categorialista} />
         </View>
     )
 }
