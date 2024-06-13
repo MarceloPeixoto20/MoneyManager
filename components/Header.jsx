@@ -1,36 +1,44 @@
-import { View, Text } from 'react-native'
+import { View, Text, Image, TouchableOpacity } from 'react-native'
 import React, { useEffect, useState } from 'react'
-import { auth } from '../utils/firebase'
-
+import Colors from '../services/Colors';
+import { auth } from '../services/firebase'
 export default function Header() {
-    const [user,setUser] = useState()
+  const [user,setUser] = useState()
 
-    useEffect(()=>{
-        getUser();
-    },[])
+  useEffect(()=>{
+      getUser();
+  },[])
 
-    const getUser = async()=>{
-        const user = await auth.currentUser?.email
-        setUser(user);
-    }
-
+  const getUser = async()=>{
+      const user = await auth.currentUser?.email
+      setUser(user);
+  }
+  /**
+   * Used to get User Data
+   */
   return (
     <View style={{
-        display:'flex',
-        flexDirection:'row',
-        gap:8,
-        alignItems:'center'
+      display: 'flex',
+      flexDirection: 'row',
+      gap: 8,
+      alignItems: 'center',
+      padding:10
     }}>
-        <View>
-            <Text style={{
-                fontSize:18
-            }}>             Welcome</Text>
-            <Text></Text>
-            <Text style={{
-                fontSize:16,
-                fontWeight:'bold'
-            }}>Email: {user}</Text>
+    
+
+      <View style={{
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        width: '100%'
+      }}>
+        <View style={{}}>
+          <Text style={{ color: Colors.WHITE, fontSize: 16, fontFamily: 'outfit' }}>Bem-vindo,</Text>
+          <Text style={{ color: Colors.WHITE, fontSize: 20, fontFamily: 'outfit-bold' }}>{user}</Text>
         </View>
+      </View>
+
     </View>
   )
 }
