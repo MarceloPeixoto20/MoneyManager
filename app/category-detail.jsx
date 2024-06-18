@@ -14,7 +14,7 @@ export default function CategoryDetails() {
   const router=useRouter();
   useEffect(()=>{
     console.log(categoryId)
-    categoryId&&getCategoryDetail();
+    categoryId&&getCategoryDetail();    
   },[categoryId]);
 
   const getCategoryDetail=async()=>{
@@ -37,7 +37,8 @@ export default function CategoryDetails() {
       <Link style={styles.floatingBtn} href={{
         pathname:'/add-new-category-items',
         params:{
-          categoryId:categoryData.id
+          categoryId:categoryData.id,
+          categoryData:categoryData.assigned_budget
         }
       }}>
         <Ionicons name="add-circle" size={60} color={Colors.PRIMARY} />

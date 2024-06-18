@@ -28,6 +28,11 @@ export default function HomeLayout() {
             headerShown:true,
             headerTitle:'Adicione um item'
           }}/>
+      <Stack.Screen name='login/Registro' options={{
+            presentation:'modal',
+            headerShown:true,
+            headerTitle:'Cadastrar Usuario'
+          }}/>
 
 
     </Stack>

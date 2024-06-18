@@ -10,6 +10,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { auth } from '../../services/firebase';
 import CategoryList from '../../components/CategoryList';
 import { signOut } from 'firebase/auth';
+import { useFocusEffect } from '@react-navigation/native';
 
 export default function Home() {
 
@@ -18,8 +19,16 @@ export default function Home() {
   const [categoryList, setCategoryList] = useState();
   const [loading, setLoading] = useState(false);
 
+  useFocusEffect(
+    React.useCallback(() => {
+      getUser();
+      ListarCategorias();
+    }, [])
+  );
+
   useEffect(() => {
     getUser();
+    ListarCategorias();
     const unsubscribe = auth.onAuthStateChanged(user => {        
       if (user) {
         

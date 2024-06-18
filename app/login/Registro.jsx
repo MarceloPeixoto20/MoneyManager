@@ -1,12 +1,11 @@
 import { View, Text, Image, StyleSheet, TouchableOpacity,TextInput, Button, Alert, ScrollView, KeyboardAvoidingView} from 'react-native'
 import React from 'react'
 import loginBg from './../../assets/imagens/loginbg.png';
-import { useRouter, Link } from 'expo-router';
+import { useRouter } from 'expo-router';
 import { auth } from '../../services/firebase';
 import Colors from '../../services/Colors';
 import { useState, useEffect } from 'react';
 import { signInWithEmailAndPassword,createUserWithEmailAndPassword } from 'firebase/auth'
-import { AntDesign } from '@expo/vector-icons';
 
 export default function LoginScreen() {
 
@@ -27,7 +26,24 @@ export default function LoginScreen() {
     }, [])
 
     
-    
+    const Registrar = async () => {
+      setLoading(true)
+        try{
+          const response = await createUserWithEmailAndPassword(auth, email, senha)
+          .then(userCredentials =>{
+            const user = userCredentials.user
+            console.log(user.email)
+          })
+          .catch(error => alert(error.message))
+          setLoading(false)
+          router.replace('home')
+        }catch(error){
+        setLoading(false)  
+          Alert.alert('Falha no Registro: ' + error.message)
+        }finally{
+            setLoading(false)
+        }
+    }
       
     const Login = async () => {
       setLoading(true)
@@ -86,19 +102,13 @@ export default function LoginScreen() {
               onChangeText={(text) => setSenha(text)}
               style={styles.loginFormTextInput}
               secureTextEntry={true}
-            />
+            />            
             <View style={{marginTop:10}}>
-              <Button
-                buttonStyle={styles.loginButton}
-                onPress={Login}
-                title="Login"
-              />
-             </View>
-            <View style={{marginTop:10}}>
-            <Link style={styles.floatingBtn} href={{
-              pathname:'login/Registro'              
-            }}><AntDesign name="adduser" size={24} color="black" />
-            </Link>   
+            <Button
+              buttonStyle={styles.RegisterButton}
+              onPress={Registrar}
+              title="Registrar"
+            />        
             </View>       
           </View>
       </View>

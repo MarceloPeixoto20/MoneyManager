@@ -15,7 +15,7 @@ export default function CourseInfo({categoryData}) {
     const calculateTotalPerc=()=>{
         let total = 0;
         categoryData?.CategoryItems?.forEach(item=>{
-            total=total+item.cost;
+            total=total+parseToFloat(item.cost);
         });
         setTotalCost(total);
         let perc=(total/categoryData.assigned_budget)*100;
@@ -24,6 +24,10 @@ export default function CourseInfo({categoryData}) {
         }
         setPercTotal(perc)
     }
+    const parseToFloat = (formattedValue) => {
+        const valueWithDot = formattedValue.replace(',', '.');
+        return parseFloat(valueWithDot);
+      };
 
     const onDeleteCategory = ()=>{
         Alert.alert('Você tem certeza','deseja realmente excluir?' ,[
